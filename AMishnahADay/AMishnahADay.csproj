@@ -1,0 +1,35 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net5.0-windows10.0.17763.0</TargetFramework>
+		<UseWPF>true</UseWPF>
+		<UseWindowsForms>true</UseWindowsForms>
+		<AssemblyName>A Mishnah A Day</AssemblyName>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <None Remove="Data\AMADIcon" />
+	  <None Remove="Data\AMishnahADay.png" />
+	  <None Remove="Data\Icon" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Include="Data\AMishnahADay.png">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Resource Include="Data\AMADIcon">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Resource>
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Toolkit.Uwp.Notifications" Version="7.0.1" />
+		<PackageReference Include="Telerik.UI.for.Wpf.NetCore.Xaml" Version="2021.1.119" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\NotifyIcon\NotifyIcon.csproj" />
+	</ItemGroup>
+
+</Project>
