@@ -68,48 +68,50 @@ namespace AMishnahADay {
         Directory.CreateDirectory(App_Folder);
       }
 
-      ReadFromXml();
-      RunTimer();
+      TimeForToast = new DateTime(DateTime.Today.Year, DateTime.Today.Month, DateTime.Today.Day, 15, 0, 0);
+
+      //ReadFromXml();
+      //RunTimer();
 
       IsStarted = true;
     }
 
-    private void ReadFromXml() {
-      bool success;
-      Exception exception = new();
+    //private void ReadFromXml() {
+    //  bool success;
+    //  Exception exception = new();
 
-      try {
-        if (File.Exists(Path.Combine(App_Folder, "Settings.xml"))) {
-          System.Xml.XmlDocument readFile = new();
-          readFile.Load(Path.Combine(App_Folder, "Settings.xml"));
+    //  try {
+    //    if (File.Exists(Path.Combine(App_Folder, "Settings.xml"))) {
+    //      System.Xml.XmlDocument readFile = new();
+    //      readFile.Load(Path.Combine(App_Folder, "Settings.xml"));
 
-          System.Xml.XmlNode startupNode = readFile.SelectSingleNode("/Settings/Startup");
-          RunsOnStartup = startupNode.InnerText == "True";
+    //      System.Xml.XmlNode startupNode = readFile.SelectSingleNode("/Settings/Startup");
+    //      RunsOnStartup = startupNode.InnerText == "True";
 
-          System.Xml.XmlNode intervalNode = readFile.SelectSingleNode("/Settings/Interval");
-          Interval = double.TryParse(intervalNode.InnerText, out double outInterval) ? outInterval : 30;
+    //      System.Xml.XmlNode intervalNode = readFile.SelectSingleNode("/Settings/Interval");
+    //      Interval = double.TryParse(intervalNode.InnerText, out double outInterval) ? outInterval : 30;
 
-          System.Xml.XmlNode notifTextNode = readFile.SelectSingleNode("/Settings/NotifText");
-        } else {
-          RunsOnStartup = true;
-          SplashScreen = true;
-        }
+    //      System.Xml.XmlNode notifTextNode = readFile.SelectSingleNode("/Settings/NotifText");
+    //    } else {
+    //      RunsOnStartup = true;
+    //      SplashScreen = true;
+    //    }
 
-        LastRead = DateTime.Now;
+    //    LastRead = DateTime.Now;
 
-        success = true;
-      } catch (Exception ex) {
-        success = false;
-        exception = ex;
-      }
+    //    success = true;
+    //  } catch (Exception ex) {
+    //    success = false;
+    //    exception = ex;
+    //  }
 
-      if (!success) {
-        RadWindow.Alert(new DialogParameters {
-          Header = "A Mishnah A Day App - Error",
-          Content = "Error reading the settings" + Environment.NewLine + exception.Message
-        });
-      }
-    }
+    //  if (!success) {
+    //    RadWindow.Alert(new DialogParameters {
+    //      Header = "A Mishnah A Day App - Error",
+    //      Content = "Error reading the settings" + Environment.NewLine + exception.Message
+    //    });
+    //  }
+    //}
 
     private void RunTimer() {
       timer = new Timer {
@@ -132,7 +134,7 @@ namespace AMishnahADay {
     private void CheckTimeStamps() {
       DateTime time = File.GetLastWriteTime(Path.Combine(App_Folder, "Settings.xml"));
       if (LastRead < time) {
-        ReadFromXml();
+        //ReadFromXml();
 
         LastRead = DateTime.Now;
       }
@@ -140,13 +142,16 @@ namespace AMishnahADay {
 
     public static void PopTheToast() =>
       new ToastContentBuilder()
-          .AddArgument("action", "viewConversation")
-          .AddArgument("conversationId", 9813)
+          .AddArgument("masechtah", "berachot")
+          .AddArgument("mishnah", 1)
+          .AddArgument("perek", 1)
           .AddText("Learn a Mishnah!")
           .AddText("Click to view the Mishnah of the day.")
+          //.AddHeroImage(new Uri("file:///"))
           .AddAppLogoOverride(new Uri("file:///" + Path.GetFullPath("Data/AMishnahADay.png")), ToastGenericAppLogoCrop.Circle)
           .AddAttributionText("Via AMAD")
-          .Show();
+          .Schedule(/*TimeForToast*/ DateTime.Now.AddSeconds(10) /*, toast => toast.ExpirationTime = DateTime.Now.AddMinutes(2)*/);
+          //.Show(toast => toast.ExpirationTime = DateTime.Now.AddMinutes(2));
 
     protected override void OnExit(ExitEventArgs e) {
       // The icon would clean up automatically, but this is cleaner
