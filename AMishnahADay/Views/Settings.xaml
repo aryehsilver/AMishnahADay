@@ -44,7 +44,7 @@
 		</Style>
 	</telerik:RadWindow.Resources>
 	<telerik:RadWindow.Icon>
-		<Image Source="../Data/Icon" Width="24" Margin="5" />
+		<Image Source="../Data/AMADIcon" Width="24" Margin="5" />
 	</telerik:RadWindow.Icon>
 	<telerik:RadBusyIndicator BusyContent="Saving please wait..."
 														Name="busyIndicator"
