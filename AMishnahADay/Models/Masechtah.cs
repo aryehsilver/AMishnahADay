@@ -1,9 +1,13 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AMishnahADay.Models {
   public class Masechtah {
     public int ID { get; set; }
-    public string Name { get; set; }
+    public string EnglishName { get; set; }
+    public string HebrewName { get; set; }
+    [NotMapped]
+    public string BothNames { get; set; }
     public List<Perek> Perekim { get; set; }
     public Masechtas Masechet { get; set; }
   }
