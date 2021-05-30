@@ -7,7 +7,7 @@ namespace AMishnahADay.Models {
     public string EnglishName { get; set; }
     public string HebrewName { get; set; }
     [NotMapped]
-    public string BothNames { get; set; }
+    public string BothNames => EnglishName + " - " + HebrewName;
     public List<Perek> Perekim { get; set; }
     public Masechtas Masechet { get; set; }
   }

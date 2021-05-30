@@ -7,5 +7,6 @@ namespace AMishnahADay.Models {
     public Mishnah Mishnah { get; set; }
     public bool StartOnSystemStartup { get; set; }
     public DateTime TimeForToast { get; set; }
+    public bool DarkMode { get; set; }
   }
 }
