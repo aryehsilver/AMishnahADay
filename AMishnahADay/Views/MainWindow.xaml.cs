@@ -1,27 +1,31 @@
-﻿using Microsoft.Toolkit.Uwp.Notifications;
-using System;
-using System.IO;
+﻿using AMishnahADay.ViewModels;
 using System.Windows;
+using Telerik.Windows.Controls;
 
 namespace AMishnahADay.Views {
   /// <summary>
   /// Interaction logic for MainWindow.xaml
   /// </summary>
-  public partial class MainWindow : Window {
+  public partial class MainWindow : RadWindow {
+
     public MainWindow() =>
       InitializeComponent();
+    //HtmlFormatProvider provider = new();
+    //RadDocument engDocument = provider.Import(mishnah.EnglishText);
+    //englishMishnah.Document = engDocument;
+    //RadDocument hebDocument = provider.Import(mishnah.HebrewText);
+    //hebrewMishnah.Document = hebDocument;
 
-    private void ShowToast_Click(object sender, RoutedEventArgs e) =>
-      new ToastContentBuilder()
-          .AddArgument("masechtah", "berachot")
-          .AddArgument("mishnah", 1)
-          .AddArgument("perek", 1)
-          .AddText("Learn a Mishnah!")
-          .AddText("Click to view the Mishnah of the day.")
-          //.AddHeroImage(new Uri("file:///"))
-          .AddAppLogoOverride(new Uri("file:///" + Path.GetFullPath("Data/AMishnahADay.png")), ToastGenericAppLogoCrop.Circle)
-          .AddAttributionText("Via AMAD")
-          .Schedule(DateTime.Now.AddSeconds(10)/*, toast => toast.ExpirationTime = DateTime.Now.AddMinutes(2)*/);
-          //.Show(toast => toast.ExpirationTime = DateTime.Now.AddMinutes(2));
+    private void Settings_Click(object sender, RoutedEventArgs e) {
+      new Settings().ShowDialog();
+      // TODO: Since context hasn't changed the mishnah is still the old one not the changed...
+      _ = ((MainWindowViewModel)DataContext).LoadData();
+    }
+
+    protected override void OnClosed() =>
+      _ = ((MainWindowViewModel)DataContext).Save();
+
+    private void Theme_Click(object sender, RoutedEventArgs e) =>
+      _ = ((MainWindowViewModel)DataContext).SetTheme();
   }
 }
