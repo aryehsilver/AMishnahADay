@@ -8,5 +8,6 @@ namespace AMishnahADay.ViewModels {
       Kernel = new StandardKernel();
     
     public MainWindowViewModel MainWindowViewModel => Kernel.Get<MainWindowViewModel>();
+    public SettingsViewModel SettingsViewModel => Kernel.Get<SettingsViewModel>();
   }
 }
