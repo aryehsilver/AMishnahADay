@@ -15,18 +15,17 @@ namespace AMishnahADay {
   /// Interaction logic for App.xaml
   /// </summary>
   public partial class App : Application {
+
     #region Props, Fields & consts
-    private static readonly string App_Folder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\AMAD_App";
+    private readonly AppDbContext Context = new();
     private TaskbarIcon notifyIcon;
     private Timer timer;
-    public DateTime LastRead { get; set; }
-    public bool RunsOnStartup { get; set; } = true;
     public double Interval { get; set; } = 30;
     public DateTime TimeForToast { get; set; }
     public int MishnahNumber { get; set; }
     public string Perek { get; set; }
     public string Mesechtah { get; set; }
-    public bool IsStarted { get; set; } = false;
+    public bool IsStarted { get; set; }
     #endregion
 
     protected override void OnStartup(StartupEventArgs e) {
@@ -42,27 +41,26 @@ namespace AMishnahADay {
         notifyIcon = (TaskbarIcon)FindResource("NotifyIcon");
 
         StyleManager.ApplicationTheme = new FluentTheme();
-        SetThemeMode(new AppDbContext());
+        if (Context.Settings.SingleOrDefault().DarkMode) {
+          FluentPalette.LoadPreset(FluentPalette.ColorVariation.Dark);
+        } else {
+          FluentPalette.LoadPreset(FluentPalette.ColorVariation.Light);
+        }
         //ThemeEffectsHelper.IsAcrylicEnabled = false;
 
         Start();
-        //PopTheToast();
       }
 
       using AppDbContext context = new();
       context.Database.Migrate();
     }
 
-    private void SetThemeMode(AppDbContext context) =>
-      FluentPalette.LoadPreset(context.Settings.SingleOrDefault().DarkMode ? FluentPalette.ColorVariation.Dark : FluentPalette.ColorVariation.Dark);
-
     public void Start() {
-      if (!Directory.Exists(App_Folder)) {
-        Directory.CreateDirectory(App_Folder);
-      }
-
       DateTime timeForToast = new AppDbContext().Settings.SingleOrDefault().TimeForToast;
       TimeForToast = new DateTime(DateTime.Today.Year, DateTime.Today.Month, DateTime.Today.Day, timeForToast.Hour, timeForToast.Minute, 0);
+      if (TimeForToast <= DateTime.Now) {
+        TimeForToast = TimeForToast.AddDays(1);
+      }
 
       //RunTimer();
 
@@ -112,8 +110,7 @@ namespace AMishnahADay {
           })
           .AddButton(new ToastButtonSnooze() { SelectionBoxId = "snoozeTime" })
           .AddButton(new ToastButtonDismiss())
-          // TODO: If time has passed an exception will be thrown, need to use tommorow in that case...
-          .Schedule(TimeForToast, toast => toast.ExpirationTime = TimeForToast.AddMinutes(1));
+          .Schedule(TimeForToast, toast => toast.ExpirationTime = TimeForToast.AddDays(1));
 
     protected override void OnExit(ExitEventArgs e) {
       // The icon would clean up automatically, but this is cleaner
