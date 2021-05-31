@@ -7,8 +7,16 @@
 	<!-- The "shared" directive is needed if we reopen the sample window a few times - WPF will otherwise
         reuse the same context menu (which is a resource) again (which will have its DataContext set to the old TaskbarIcon) -->
 	<ContextMenu x:Shared="false" x:Key="SysTrayMenu">
-		<MenuItem Header="Learn a mishnah" Command="{Binding OpenMainWindowCommand}" />
-		<MenuItem Header="Settings" Command="{Binding ShowSettingsWindowCommand}" />
+		<MenuItem Header="Learn a mishnah" Command="{Binding OpenMainWindowCommand}">
+		<MenuItem.Icon>
+			<Image Source="{telerik:RadGlyph Glyph={StaticResource GlyphJs}}" />
+		</MenuItem.Icon>
+		</MenuItem>
+		<MenuItem Header="Settings" Command="{Binding ShowSettingsWindowCommand}">
+			<MenuItem.Icon>
+				<Image Source="{telerik:RadGlyph Glyph={StaticResource GlyphGear}}" />
+			</MenuItem.Icon>
+		</MenuItem>
 		<Separator />
 		<MenuItem Header="Exit" Command="{Binding ExitApplicationCommand}" />
 	</ContextMenu>
@@ -17,7 +25,7 @@
 	<tb:TaskbarIcon x:Key="NotifyIcon"
                   IconSource="/Data/AMADIcon"
                   ToolTipText="A Mishnah A Day"
-									LeftClickCommand="{Binding ShowSettingsWindowCommand}"
+									LeftClickCommand="{Binding OpenMainWindowCommand}"
                   ContextMenu="{StaticResource SysTrayMenu}">
 
 		<!-- Self-assign a data context (could also be done programmatically) -->
