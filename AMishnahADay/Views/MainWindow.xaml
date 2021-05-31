@@ -24,7 +24,7 @@
 	</telerik:RadWindow.Icon>
 	<Grid  gh:GridHelper.GridCols="*,*"
 				 gh:GridHelper.GridRows="auto,auto,*,auto,auto,auto,auto,auto,auto,auto"
-				 Margin="0, 0, 0, 15">
+				 Margin="0, 0, 0, 20">
 
 		<telerik:RadButton Grid.Row="0"
 											 Grid.Column="1"

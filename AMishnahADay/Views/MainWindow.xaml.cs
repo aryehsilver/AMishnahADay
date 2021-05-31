@@ -1,6 +1,7 @@
 ﻿using AMishnahADay.ViewModels;
 using System.Windows;
 using Telerik.Windows.Controls;
+using Telerik.Windows.Documents.Model;
 
 namespace AMishnahADay.Views {
   /// <summary>
@@ -8,13 +9,13 @@ namespace AMishnahADay.Views {
   /// </summary>
   public partial class MainWindow : RadWindow {
 
-    public MainWindow() =>
+    public MainWindow() {
       InitializeComponent();
-    //HtmlFormatProvider provider = new();
-    //RadDocument engDocument = provider.Import(mishnah.EnglishText);
-    //englishMishnah.Document = engDocument;
-    //RadDocument hebDocument = provider.Import(mishnah.HebrewText);
-    //hebrewMishnah.Document = hebDocument;
+      //hebrewMishnah.Document.StyleRepository[RadDocumentDefaultStyles.NormalStyleName].ParagraphProperties.FlowDirection = FlowDirection.RightToLeft;
+      hebrewMishnah.Document.Selection.SelectAll();
+      hebrewMishnah.ChangeParagraphFlowDirection(FlowDirection.RightToLeft);
+      hebrewMishnah.Document.Selection.Clear();
+    }
 
     private void Settings_Click(object sender, RoutedEventArgs e) {
       new Settings().ShowDialog();
