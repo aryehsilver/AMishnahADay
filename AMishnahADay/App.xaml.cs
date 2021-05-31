@@ -29,6 +29,9 @@ namespace AMishnahADay {
     #endregion
 
     protected override void OnStartup(StartupEventArgs e) {
+      using AppDbContext context = new();
+      context.Database.Migrate();
+
       // Listen to notification activation
       ToastNotificationManagerCompat.OnActivated += toastArgs =>
         Current.Dispatcher.Invoke(delegate {
@@ -50,9 +53,6 @@ namespace AMishnahADay {
 
         Start();
       }
-
-      using AppDbContext context = new();
-      context.Database.Migrate();
     }
 
     public void Start() {
