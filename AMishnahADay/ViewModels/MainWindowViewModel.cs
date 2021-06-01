@@ -9,7 +9,7 @@ using ViewModelBase = GalaSoft.MvvmLight.ViewModelBase;
 
 namespace AMishnahADay.ViewModels {
   public class MainWindowViewModel : ViewModelBase {
-    private readonly AppDbContext context = new();
+    private AppDbContext context;
     public MainWindowViewModel() {
       _ = LoadData();
       LoadCommands();
@@ -21,6 +21,7 @@ namespace AMishnahADay.ViewModels {
     }
 
     public async Task LoadData() {
+      context = new();
       DarkMode = context.Settings.SingleOrDefault().DarkMode;
       DarkModeToolTip = context.Settings.SingleOrDefault().DarkMode ? "Switch to light mode" : "Switch to dark mode";
       Mishnah = context.Settings
@@ -209,7 +210,6 @@ namespace AMishnahADay.ViewModels {
     public async Task Save() =>
       await Task.Run(() => {
         Settings settings = context.Settings.SingleOrDefault();
-        // TODO: If not keeping for tomorrow then add 1 to show the next mishnah...
         settings.MishnahID = Mishnah.ID;
         context.Update(settings);
         context.SaveChanges();
