@@ -12,15 +12,11 @@ namespace AMishnahADay.Views {
 
     public MainWindow() {
       InitializeComponent();
-      //hebrewMishnah.Document.StyleRepository[RadDocumentDefaultStyles.NormalStyleName].ParagraphProperties.FlowDirection = FlowDirection.RightToLeft;
-      hebrewMishnah.Document.Selection.SelectAll();
-      hebrewMishnah.ChangeParagraphFlowDirection(FlowDirection.RightToLeft);
-      hebrewMishnah.Document.Selection.Clear();
+      SetStyleOnHebrewDoc();
     }
 
     private void Settings_Click(object sender, RoutedEventArgs e) {
       new Settings().ShowDialog();
-      // TODO: Since context hasn't changed the mishnah is still the old one not the changed...
       _ = ((MainWindowViewModel)DataContext).LoadData();
     }
 
@@ -30,8 +26,11 @@ namespace AMishnahADay.Views {
     private void Theme_Click(object sender, RoutedEventArgs e) =>
       _ = ((MainWindowViewModel)DataContext).SetTheme();
 
-    private void HebrewMishnah_DocumentChanged(object sender, EventArgs e) {
-      //hebrewMishnah.Document.StyleRepository[RadDocumentDefaultStyles.NormalStyleName].ParagraphProperties.FlowDirection = FlowDirection.RightToLeft;
+    private void HebrewMishnah_DocumentChanged(object sender, EventArgs e) =>
+      SetStyleOnHebrewDoc();
+
+    private void SetStyleOnHebrewDoc() {
+      hebrewMishnah.Document.StyleRepository[RadDocumentDefaultStyles.NormalStyleName].ParagraphProperties.FlowDirection = FlowDirection.RightToLeft;
       hebrewMishnah.Document.Selection.SelectAll();
       hebrewMishnah.ChangeParagraphFlowDirection(FlowDirection.RightToLeft);
       hebrewMishnah.Document.Selection.Clear();
