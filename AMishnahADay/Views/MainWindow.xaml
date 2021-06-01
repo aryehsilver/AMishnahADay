@@ -158,6 +158,7 @@
 			<telerik:RadRichTextBox Name="hebrewMishnah"
 															Grid.Column="1"
 															Padding="5"
+															DocumentChanged="HebrewMishnah_DocumentChanged"
 															IsSpellCheckingEnabled="False"
 															IsReadOnly="True"
 															FontSize="24"

@@ -1,4 +1,5 @@
 ﻿using AMishnahADay.ViewModels;
+using System;
 using System.Windows;
 using Telerik.Windows.Controls;
 using Telerik.Windows.Documents.Model;
@@ -28,5 +29,12 @@ namespace AMishnahADay.Views {
 
     private void Theme_Click(object sender, RoutedEventArgs e) =>
       _ = ((MainWindowViewModel)DataContext).SetTheme();
+
+    private void HebrewMishnah_DocumentChanged(object sender, EventArgs e) {
+      //hebrewMishnah.Document.StyleRepository[RadDocumentDefaultStyles.NormalStyleName].ParagraphProperties.FlowDirection = FlowDirection.RightToLeft;
+      hebrewMishnah.Document.Selection.SelectAll();
+      hebrewMishnah.ChangeParagraphFlowDirection(FlowDirection.RightToLeft);
+      hebrewMishnah.Document.Selection.Clear();
+    }
   }
 }
