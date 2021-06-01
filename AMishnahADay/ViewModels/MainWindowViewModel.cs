@@ -1,4 +1,4 @@
-﻿using AMishnahADay.Models;
+﻿using AMishnahADay.Models.Models;
 using GalaSoft.MvvmLight.Command;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;

@@ -6,7 +6,7 @@
 		<UseWPF>true</UseWPF>
 		<UseWindowsForms>true</UseWindowsForms>
 		<AssemblyName>A Mishnah A Day</AssemblyName>
-		<ApplicationIcon>Data/AMADIcon</ApplicationIcon>
+		<ApplicationIcon>Data\AMADIcon</ApplicationIcon>
 		<Version>1.0.1</Version>
 	</PropertyGroup>
 
@@ -34,7 +34,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\NotifyIcon\NotifyIcon.csproj" />
+		<ProjectReference Include="..\NotifyIcon\NotifyIcon.csproj" />
+	  <ProjectReference Include="..\AMishnahADay.Models\AMishnahADay.Models.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

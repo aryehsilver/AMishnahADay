@@ -1,4 +1,4 @@
-﻿using AMishnahADay.Models;
+﻿using AMishnahADay.Models.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
