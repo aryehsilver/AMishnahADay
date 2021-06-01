@@ -17,7 +17,7 @@ namespace AMishnahADay.ViewModels {
 
     private async Task LoadData() {
       DarkMode = context.Settings.SingleOrDefault().DarkMode;
-      DarkModeToolTip = context.Settings.SingleOrDefault().DarkMode ? "Light mode" : "Dark mode";
+      DarkModeToolTip = context.Settings.SingleOrDefault().DarkMode ? "Switch to light mode" : "Switch to dark mode";
       Startup = context.Settings.SingleOrDefault().StartOnSystemStartup;
       TimeForToast = context.Settings.SingleOrDefault().TimeForToast;
       Mishnah = context.Settings
@@ -184,7 +184,7 @@ namespace AMishnahADay.ViewModels {
 
     public async Task SetTheme() {
       DarkMode = !DarkMode;
-      DarkModeToolTip = DarkMode ? "Light mode" : "Dark mode";
+      DarkModeToolTip = DarkMode ? "Switch to light mode" : "Switch to dark mode";
       FluentPalette.LoadPreset(DarkMode ? FluentPalette.ColorVariation.Dark : FluentPalette.ColorVariation.Light);
       context.Settings.SingleOrDefault().DarkMode = DarkMode;
       await context.SaveChangesAsync();
@@ -206,7 +206,7 @@ namespace AMishnahADay.ViewModels {
     #endregion
 
     #region DarkModeToolTip
-    private string _DarkModeToolTip = "Dark mode";
+    private string _DarkModeToolTip = "Switch to dark mode";
     public string DarkModeToolTip {
       get => _DarkModeToolTip;
       set {
