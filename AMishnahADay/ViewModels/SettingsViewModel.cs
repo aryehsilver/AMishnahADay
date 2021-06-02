@@ -1,10 +1,14 @@
 ﻿using AMishnahADay.Models.Models;
+using IWshRuntimeLibrary;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using Telerik.Windows.Controls;
+using File = System.IO.File;
 using ViewModelBase = GalaSoft.MvvmLight.ViewModelBase;
 
 namespace AMishnahADay.ViewModels {
@@ -56,13 +60,26 @@ namespace AMishnahADay.ViewModels {
         settings.Mishnah = Mishnah;
         context.Update(settings);
         context.SaveChanges();
+        SetStartUp();
         IsBusy = false;
       });
-    // TODO: Add to startup
+
+    private void SetStartUp() {
+      if (Startup) {
+        WshShell wsh = new();
+        IWshShortcut shortcut = wsh.CreateShortcut(Startup_Folder + "\\A Mishnah A Day.lnk") as IWshShortcut;
+        shortcut.TargetPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "A Mishnah A Day.exe");
+        shortcut.Description = "Shortcut to 'A Mishnah A Day'";
+        shortcut.Save();
+      } else {
+        File.Delete(Path.Combine(Startup_Folder, "A Mishnah A Day.lnk"));
+      }
+    }
+
     #endregion
 
     #region Startup
-    private bool _Startup = false;
+    private bool _Startup;
     public bool Startup {
       get => _Startup;
       set {

@@ -32,6 +32,17 @@
 		<PackageReference Include="MvvmLightLibsStd10" Version="5.4.1.1" />
 		<PackageReference Include="Ninject" Version="3.3.4" />
 	</ItemGroup>
+	
+	<ItemGroup>
+		<COMReference Include="IWshRuntimeLibrary.dll">
+			<WrapperTool>tlbimp</WrapperTool>
+			<VersionMinor>0</VersionMinor>
+			<VersionMajor>1</VersionMajor>
+			<Guid>f935dc20-1cf0-11d0-adb9-00c04fd58a0b</Guid>
+			<Lcid>0</Lcid>
+			<Isolated>false</Isolated>
+		</COMReference>
+	</ItemGroup>
 
 	<ItemGroup>
 		<ProjectReference Include="..\NotifyIcon\NotifyIcon.csproj" />
