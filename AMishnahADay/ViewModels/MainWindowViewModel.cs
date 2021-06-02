@@ -179,24 +179,21 @@ namespace AMishnahADay.ViewModels {
 
     #endregion
 
-    private void NextOrPreviousMishnah(int number) {
-      if (Mishnah.ID == 1 && number == -1) {
-        Mishnah = context.Mishnayos
-          .Include(m => m.Masechtah)
-          .Include(m => m.Perek)
-          .SingleOrDefault(m => m.ID == 4192);
-      } else if (Mishnah.ID == 4192 && number == 1) {
-        Mishnah = context.Mishnayos
-          .Include(m => m.Masechtah)
-          .Include(m => m.Perek)
-          .SingleOrDefault(m => m.ID == 1);
-      } else {
-        Mishnah = context.Mishnayos
-          .Include(m => m.Masechtah)
-          .Include(m => m.Perek)
-          .SingleOrDefault(m => m.ID == Mishnah.ID + number);
-      }
-    }
+    private void NextOrPreviousMishnah(int number) =>
+      Mishnah = Mishnah.ID == 1 && number == -1
+          ? context.Mishnayos
+                .Include(m => m.Masechtah)
+                .Include(m => m.Perek)
+                .SingleOrDefault(m => m.ID == 4192)
+          : Mishnah.ID == 4192 && number == 1
+            ? context.Mishnayos
+                  .Include(m => m.Masechtah)
+                  .Include(m => m.Perek)
+                  .SingleOrDefault(m => m.ID == 1)
+            : context.Mishnayos
+                  .Include(m => m.Masechtah)
+                  .Include(m => m.Perek)
+                  .SingleOrDefault(m => m.ID == Mishnah.ID + number);
 
     #region PreviousCommand
     public RelayCommand PreviousCommand { get; set; }
