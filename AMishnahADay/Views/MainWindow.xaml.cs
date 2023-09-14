@@ -1,22 +1,22 @@
 ﻿namespace AMishnahADay.Views;
 
-  public partial class MainWindow : RadWindow {
-    public MainWindow() {
-      InitializeComponent();
-      SetStyleOnHebrewDoc();
+public partial class MainWindow : RadWindow {
+  public MainWindow() {
+    InitializeComponent();
+    SetStyleOnHebrewDoc();
     SetDocColours();
-    }
+  }
 
-    private void Settings_Click(object sender, RoutedEventArgs e) {
-      new Settings().ShowDialog();
-      _ = ((MainWindowViewModel)DataContext).LoadData();
-    }
+  private void Settings_Click(object sender, RoutedEventArgs e) {
+    new Settings().ShowDialog();
+    _ = ((MainWindowViewModel)DataContext).LoadData();
+  }
 
-    protected override void OnClosed() =>
-      _ = ((MainWindowViewModel)DataContext).Save();
+  protected override void OnClosed() =>
+    _ = ((MainWindowViewModel)DataContext).Save();
 
   private void Theme_Click(object sender, RoutedEventArgs e) {
-      _ = ((MainWindowViewModel)DataContext).SetTheme();
+    _ = ((MainWindowViewModel)DataContext).SetTheme();
     SetDocColours();
   }
 
@@ -50,17 +50,45 @@
     };
   }
 
-    private void HebrewMishnah_DocumentChanged(object sender, EventArgs e) =>
-      SetStyleOnHebrewDoc();
+  private void HebrewMishnah_DocumentChanged(object sender, EventArgs e) =>
+    SetStyleOnHebrewDoc();
 
-    private void SetStyleOnHebrewDoc() {
+  private void SetStyleOnHebrewDoc() {
     hebrewMishnah.Document.StyleRepository[RadDocumentDefaultStyles.NormalStyleName].ParagraphProperties.FlowDirection = System.Windows.FlowDirection.RightToLeft;
-      hebrewMishnah.Document.Selection.SelectAll();
+    hebrewMishnah.Document.Selection.SelectAll();
     hebrewMishnah.ChangeParagraphFlowDirection(System.Windows.FlowDirection.RightToLeft);
     hebrewMishnah.ChangeFontFamily(new Media.FontFamily("Narkisim"));
-      hebrewMishnah.Document.Selection.Clear();
-    }
+    hebrewMishnah.Document.Selection.Clear();
+  }
+
+  private void Next_Click(object sender, RoutedEventArgs e) =>
+    NextClick();
+
+  private void NextClick() {
+    ((MainWindowViewModel)DataContext).NextOrPreviousMishnah(1);
+    SetDocColours();
+  }
+
+  private void Previous_Click(object sender, RoutedEventArgs e) =>
+    PreviousClick();
+
+  private void PreviousClick() {
+    ((MainWindowViewModel)DataContext).NextOrPreviousMishnah(-1);
+    SetDocColours();
+  }
+
   private void Hyperlink_Click(object sender, RoutedEventArgs e) =>
     Process.Start(new ProcessStartInfo("https://www.sefaria.org") { UseShellExecute = true });
+
+  private void Window_PreviewKeyDown(object sender, Input.KeyEventArgs e) {
+    base.OnPreviewKeyDown(e);
+
+    if ((Keyboard.IsKeyDown(Key.LeftAlt) || Keyboard.IsKeyDown(Key.RightAlt)) && Keyboard.IsKeyDown(Key.Left)) {
+      PreviousClick();
+    }
+
+    if ((Keyboard.IsKeyDown(Key.LeftAlt) || Keyboard.IsKeyDown(Key.RightAlt)) && Keyboard.IsKeyDown(Key.Right)) {
+      NextClick();
+    }
   }
 }

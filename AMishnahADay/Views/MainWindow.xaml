@@ -15,19 +15,22 @@
 									 MinHeight="450"
 									 MinWidth="700"
 									 ResizeMode="CanResizeWithGrip"
+                   KeyDown="Window_PreviewKeyDown"
 									 Style="{StaticResource WindowStyle}"
 									 WindowStartupLocation="CenterScreen"
+                   KeyboardNavigation.TabNavigation="Cycle"
 									 telerikNavigation:RadWindowInteropHelper.ShowInTaskbar="True"
 									 xmlns:helpers="clr-namespace:Telerik.Windows.Controls.Theming.Helpers;assembly=Telerik.Windows.Controls" 
 									 helpers:WindowEffectsHelper.BackdropMaterial="Acrylic">
-	<telerik:RadWindow.Icon>
-		<Image Source="../Data/AMADIcon" Width="24" Margin="5" />
-	</telerik:RadWindow.Icon>
-	<Grid  gh:GridHelper.GridCols="*,*"
-				 gh:GridHelper.GridRows="auto,auto,*,auto,auto,auto,auto,auto,auto,auto"
-				 Margin="0, 0, 0, 20">
+  <telerik:RadWindow.Icon>
+    <Image Source="../Data/AMADIcon" Width="24" Margin="5" />
+  </telerik:RadWindow.Icon>
+  <Grid gh:GridHelper.GridCols="*,*"
+				gh:GridHelper.GridRows="auto,auto,*,auto,auto,auto,auto,auto,auto,auto"
+				Margin="0, 0, 0, 20"
+				x:Name="mainGrid">
 
-		<telerik:RadButton Grid.Row="0"
+    <telerik:RadButton Grid.Row="0"
 											 Grid.Column="1"
 											 Background="#00000000"
 											 BorderThickness="0"
@@ -39,11 +42,11 @@
 											 Margin="0, -46.5, 135, 0"
 											 HorizontalAlignment="Right"
 											 Click="Settings_Click">
-			<StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
-				<telerik:RadGlyph Glyph="&#xe13a;" FontSize="16" />
-			</StackPanel>
-		</telerik:RadButton>
-		<telerik:RadButton Grid.Row="0"
+      <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+        <telerik:RadGlyph Glyph="&#xe13a;" FontSize="16" />
+      </StackPanel>
+    </telerik:RadButton>
+    <telerik:RadButton Grid.Row="0"
 											 Grid.Column="1"
 											 Background="#00000000"
 											 BorderThickness="0"
@@ -55,34 +58,34 @@
 											 Margin="0, -46.5, 181, 0"
 											 HorizontalAlignment="Right"
 											 Click="Theme_Click">
-			<StackPanel Orientation="Horizontal"
+      <StackPanel Orientation="Horizontal"
 									Margin="1">
-				<telerik:RadGlyph Glyph="&#xe511;" FontSize="16" />
-			</StackPanel>
-		</telerik:RadButton>
+        <telerik:RadGlyph Glyph="&#xe511;" FontSize="16" />
+      </StackPanel>
+    </telerik:RadButton>
 
-		<telerik:RadButton Grid.Row="1"
+    <telerik:RadButton Grid.Row="1"
 											 Grid.Column="0"
 											 Width="110"
 											 Height="38"
 											 Margin="10, 0, 0, 5"
-											 Command="{Binding PreviousCommand, Mode=TwoWay}"
+											 Click="Previous_Click"
 											 HorizontalAlignment="Left"
 											 VerticalAlignment="Bottom">
-			<StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
-				<telerik:RadGlyph Glyph="&#xe016;" FontSize="16" />
-				<TextBlock Text="Previous" Margin="5, 0, 5, 1.4" />
-			</StackPanel>
-		</telerik:RadButton>
+      <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+        <telerik:RadGlyph Glyph="&#xe016;" FontSize="16" />
+        <TextBlock Text="Previous" Margin="5, 0, 5, 1.4" />
+      </StackPanel>
+    </telerik:RadButton>
 
-		<Grid Grid.Row="0"
+    <Grid Grid.Row="0"
 					Grid.ColumnSpan="2"
 					Grid.RowSpan="2"
 					HorizontalAlignment="Center"
 					Margin="80, 0, 80, 0"
 					gh:GridHelper.GridCols="215,90,90"
 					gh:GridHelper.GridRows="Auto,Auto">
-			<TextBlock Grid.Column="0"
+      <TextBlock Grid.Column="0"
 								 Grid.Row="0"
 								 HorizontalAlignment="Center"
 								 VerticalAlignment="Center"
@@ -90,7 +93,7 @@
 								 FontSize="16"
 								 TextWrapping="Wrap"
 								 Text="מסכת" />
-			<telerik:RadComboBox Grid.Column="0"
+      <telerik:RadComboBox Grid.Column="0"
 													 Grid.Row="1"
 													 Width="200"
 													 DisplayMemberPath="BothNames"
@@ -98,7 +101,7 @@
 													 SelectedItem="{Binding Masechtah, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
 													 HorizontalAlignment="Center"
 													 Margin="0, 0, 5, 5"/>
-			<TextBlock Grid.Column="1"
+      <TextBlock Grid.Column="1"
 								 Grid.Row="0"
 								 HorizontalAlignment="Center"
 								 VerticalAlignment="Center"
@@ -106,7 +109,7 @@
 								 FontSize="16"
 								 TextWrapping="Wrap"
 								 Text="פרק" />
-			<telerik:RadComboBox Grid.Column="1"
+      <telerik:RadComboBox Grid.Column="1"
 													 Grid.Row="1"
 													 Width="80"
 													 DisplayMemberPath="PerekNumber"
@@ -114,7 +117,7 @@
 													 SelectedValue="{Binding Perek, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
 													 HorizontalAlignment="Center"
 													 Margin="5, 0, 5, 5"/>
-			<TextBlock Grid.Column="2"
+      <TextBlock Grid.Column="2"
 								 Grid.Row="0"
 								 HorizontalAlignment="Center"
 								 VerticalAlignment="Center"
@@ -122,7 +125,7 @@
 								 FontSize="16"
 								 TextWrapping="Wrap"
 								 Text="משנה" />
-			<telerik:RadComboBox Grid.Column="2"
+      <telerik:RadComboBox Grid.Column="2"
 													 Grid.Row="1"
 													 Width="80"
 													 DisplayMemberPath="MishnahNumber"
@@ -130,23 +133,23 @@
 													 SelectedValue="{Binding Mishnah, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
 													 HorizontalAlignment="Center"
 													 Margin="5, 0, 0, 5"/>
-		</Grid>
+    </Grid>
 
-		<telerik:RadButton Grid.Row="1"
+    <telerik:RadButton Grid.Row="1"
 											 Grid.Column="1"
 											 Width="100"
 											 Height="38"
 											 Margin="0, 0, 10, 5"
-											 Command="{Binding NextCommand, Mode=TwoWay}"
+											 Click="Next_Click"
 											 HorizontalAlignment="Right"
 											 VerticalAlignment="Bottom">
-			<StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
-				<TextBlock Text="Next" Margin="5, 0, 5, 1.4" />
-				<telerik:RadGlyph Glyph="&#xe014;" FontSize="16" />
-			</StackPanel>
-		</telerik:RadButton>
+      <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+        <TextBlock Text="Next" Margin="5, 0, 5, 1.4" />
+        <telerik:RadGlyph Glyph="&#xe014;" FontSize="16" />
+      </StackPanel>
+    </telerik:RadButton>
 
-		<Grid gh:GridHelper.GridCols="*,*"
+    <Grid gh:GridHelper.GridCols="*,*"
           gh:GridHelper.GridRows="auto,*,auto"
 					Grid.Row="2"
 					Grid.ColumnSpan="2"
@@ -165,7 +168,7 @@
 															IsReadOnly="True"
                               IsContextMenuEnabled="False"
                               IsSelectionMiniToolBarEnabled="False" />
-			<telerik:HtmlDataProvider RichTextBox="{Binding ElementName=englishMishnah}"
+      <telerik:HtmlDataProvider RichTextBox="{Binding ElementName=englishMishnah}"
 																Html="{Binding EnglishText}" />
 
       <telerik:RadRichTextBox Grid.Row="1"
@@ -177,14 +180,14 @@
 															IsReadOnly="True"
                               IsContextMenuEnabled="False"
                               IsSelectionMiniToolBarEnabled="False" />
-			<telerik:HtmlDataProvider RichTextBox="{Binding ElementName=hebrewMishnah}"
+      <telerik:HtmlDataProvider RichTextBox="{Binding ElementName=hebrewMishnah}"
 																Html="{Binding HebrewText}" />
 
       <Border Grid.Row="2"
               Grid.ColumnSpan="2"
               BorderThickness=".5"
               BorderBrush="#e6e6e6" />
-		</Grid>
+    </Grid>
 
     <TextBlock Grid.Row="3"
 							 Grid.ColumnSpan="2"
@@ -194,5 +197,5 @@
 			<Hyperlink NavigateUri="https://www.sefaria.org"
 								 Click="Hyperlink_Click">Sefaria website</Hyperlink>
     </TextBlock>
-	</Grid>
+  </Grid>
 </telerik:RadWindow>

@@ -18,42 +18,42 @@
 									 telerikNavigation:RadWindowInteropHelper.ShowInTaskbar="True"
 									 xmlns:helpers="clr-namespace:Telerik.Windows.Controls.Theming.Helpers;assembly=Telerik.Windows.Controls" 
 									 helpers:WindowEffectsHelper.BackdropMaterial="Acrylic">
-	<telerik:RadWindow.Resources>
-		<Style x:Key="OverlayStyle" 
+  <telerik:RadWindow.Resources>
+    <Style x:Key="OverlayStyle"
            TargetType="Rectangle">
-			<Setter Property="Stroke" 
+      <Setter Property="Stroke"
               Value="#FFDA8282" />
-			<Setter Property="Fill">
-				<Setter.Value>
-					<LinearGradientBrush EndPoint="0.5,1" 
-                               MappingMode="RelativeToBoundingBox" 
+      <Setter Property="Fill">
+        <Setter.Value>
+          <LinearGradientBrush EndPoint="0.5,1"
+                               MappingMode="RelativeToBoundingBox"
                                StartPoint="0.5,0">
-						<GradientStop Color="#FF6BBDD2"
+            <GradientStop Color="#FF6BBDD2"
                           Offset="0" />
-						<GradientStop Color="#FFD2CC34"
+            <GradientStop Color="#FFD2CC34"
                           Offset="0.209" />
-						<GradientStop Color="#FFC2CE8E"
+            <GradientStop Color="#FFC2CE8E"
                           Offset="0.512" />
-						<GradientStop Color="#FF86C0CE"
+            <GradientStop Color="#FF86C0CE"
                           Offset="0.897" />
-						<GradientStop Color="#E52822"
+            <GradientStop Color="#E52822"
                           Offset="0" />
-					</LinearGradientBrush>
-				</Setter.Value>
-			</Setter>
-			<Setter Property="Opacity" 
+          </LinearGradientBrush>
+        </Setter.Value>
+      </Setter>
+      <Setter Property="Opacity" 
               Value="0.9" />
-		</Style>
-	</telerik:RadWindow.Resources>
-	<telerik:RadWindow.Icon>
-		<Image Source="../Data/AMADIcon" Width="24" Margin="5" />
-	</telerik:RadWindow.Icon>
-	<telerik:RadBusyIndicator BusyContent="Saving please wait..."
+    </Style>
+  </telerik:RadWindow.Resources>
+  <telerik:RadWindow.Icon>
+    <Image Source="../Data/AMADIcon" Width="24" Margin="5" />
+  </telerik:RadWindow.Icon>
+  <telerik:RadBusyIndicator BusyContent="Saving please wait..."
 														Name="busyIndicator"
 														IsBusy="{Binding IsBusy, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
 														OverlayStyle="{StaticResource OverlayStyle}">
-		<Grid gh:GridHelper.GridRows="auto,*,auto">
-			<telerik:RadButton Grid.Row="0"
+    <Grid gh:GridHelper.GridRows="auto,*,auto">
+      <telerik:RadButton Grid.Row="0"
 												 Width="52"
 												 Height="38"
                          telerik:CornerRadius="0"
@@ -64,52 +64,52 @@
 												 Margin="0, -36, 90, 0"
 												 HorizontalAlignment="Right"
 												 Click="Theme_Click">
-				<StackPanel Orientation="Horizontal"
+        <StackPanel Orientation="Horizontal"
 										Margin="1">
-					<telerik:RadGlyph Glyph="&#xe511;" FontSize="16" />
-				</StackPanel>
-			</telerik:RadButton>
-			<Grid gh:GridHelper.GridCols="auto,*"
+          <telerik:RadGlyph Glyph="&#xe511;" FontSize="16" />
+        </StackPanel>
+      </telerik:RadButton>
+      <Grid gh:GridHelper.GridCols="auto,*"
 						gh:GridHelper.GridRows="auto,auto,auto,auto,auto,auto,auto,auto,auto,auto"
 						Grid.Row="1"
 						Margin="20, 10, 20, 0">
 
-				<CheckBox Content="Start on system startup"
+        <CheckBox Content="Start on system startup"
 									Grid.Column="0"
 									Grid.Row="0"
 									Margin="0, 0, 5, 15"
 									IsChecked="{Binding Startup, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
 									Name="startup" />
 
-				<TextBlock Grid.Column="0"
+        <TextBlock Grid.Column="0"
 									 Grid.Row="2"
 									 Margin="5, 0, 0, 15"
 									 VerticalAlignment="Center"
                    Foreground="{Binding ForeGround}"
 									 Text="Time the reminder will be shown:" />
-				<telerik:RadTimePicker Grid.Column="1"
+        <telerik:RadTimePicker Grid.Column="1"
 															 Grid.Row="2"
 															 Margin="0, 0, 0, 15"
 															 HorizontalAlignment="Right"
 															 Width="150"
 															 SelectedValue="{Binding TimeForToast, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
-				<Separator Grid.ColumnSpan="2"
+        <Separator Grid.ColumnSpan="2"
 									 Grid.Row="3"
 									 Margin="0, 0, 0, 8"/>
 
-				<TextBlock Grid.ColumnSpan="2"
+        <TextBlock Grid.ColumnSpan="2"
 									 Grid.Row="4"
 									 HorizontalAlignment="Center"
 									 Margin="0, 0, 0, 10"
 									 Text="Next Mishnah Shown"/>
 
-				<TextBlock Grid.Column="0"
+        <TextBlock Grid.Column="0"
 									 Grid.Row="5"
 									 Margin="5, 0, 0, 15"
                    Foreground="{Binding ForeGround}"
 									 Text="Mesechtah: "/>
-				<telerik:RadComboBox Grid.Column="1"
+        <telerik:RadComboBox Grid.Column="1"
 														 Grid.Row="5"
 														 Width="200"
 														 DisplayMemberPath="BothNames"
@@ -118,12 +118,12 @@
 														 HorizontalAlignment="Right"
 														 Margin="0, 0, 0, 15"/>
 
-				<TextBlock Grid.Column="0"
+        <TextBlock Grid.Column="0"
 									 Grid.Row="6"
 									 Margin="5, 0, 0, 15"
                    Foreground="{Binding ForeGround}"
 									 Text="Perek: "/>
-				<telerik:RadComboBox Grid.Column="1"
+        <telerik:RadComboBox Grid.Column="1"
 														 Grid.Row="6"
 														 Width="200"
 													   DisplayMemberPath="PerekNumber"
@@ -132,12 +132,12 @@
 														 HorizontalAlignment="Right"
 														 Margin="0, 0, 0, 15"/>
 
-				<TextBlock Grid.Column="0"
+        <TextBlock Grid.Column="0"
 									 Grid.Row="7"
 									 Margin="5, 0, 0, 15"
                    Foreground="{Binding ForeGround}"
 									 Text="Mishnah: "/>
-				<telerik:RadComboBox Grid.Column="1"
+        <telerik:RadComboBox Grid.Column="1"
 														 Grid.Row="7"
 														 Width="200"
 														 DisplayMemberPath="MishnahNumber"
@@ -146,31 +146,31 @@
 														 HorizontalAlignment="Right"
 														 Margin="0, 0, 0, 15"/>
 
-				<telerik:RadWrapPanel Grid.ColumnSpan="2"
+        <telerik:RadWrapPanel Grid.ColumnSpan="2"
 															Grid.Row="8"
 															Margin="0, 0, -10, 0"
 															VerticalAlignment="Center"
 															HorizontalAlignment="Right">
-					<Button Padding="3"
+          <Button Padding="3"
 									MinWidth="70"
 									Content="Save"
 									Click="Save_Click"
 									IsDefault="True" />
-					<Button Padding="3"
+          <Button Padding="3"
 									Margin="10, 0"
 									MinWidth="70"
 									Content="Cancel"
 									Click="Cancel_Click" />
-				</telerik:RadWrapPanel>
-			</Grid>
+        </telerik:RadWrapPanel>
+      </Grid>
 
-			<TextBlock Grid.Row="2"
+      <TextBlock Grid.Row="2"
 								 Margin="5, -20, 5, 5">
 				<Run>A project of </Run>
 				<Hyperlink NavigateUri="https://alldev.co.uk"
 									 Click="Hyperlink_Click">All Dev</Hyperlink>
 				<Run> © 2022 Version 2.0</Run>
       </TextBlock>
-		</Grid>
-	</telerik:RadBusyIndicator>
+    </Grid>
+  </telerik:RadBusyIndicator>
 </telerik:RadWindow>
