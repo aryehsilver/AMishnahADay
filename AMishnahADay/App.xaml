@@ -7,27 +7,28 @@
              xmlns:d1p1="http://schemas.openxmlformats.org/markup-compatibility/2006"
              d1p1:Ignorable="d"
 						 xmlns:viewModels="clr-namespace:AMishnahADay.ViewModels"
-             ShutdownMode="OnExplicitShutdown">
-	<Application.Resources>
-		<ResourceDictionary>
-			<viewModels:ViewModelLocator x:Key="Locator"
+						 Startup="App_OnStartup">
+  <!--ShutdownMode="OnExplicitShutdown">-->
+  <Application.Resources>
+    <ResourceDictionary>
+      <viewModels:ViewModelLocator x:Key="Locator"
 																	 d:IsDataSource="True" />
-			<Style x:Key="WindowStyle" TargetType="telerik:RadWindow">
-				<Setter Property="FontFamily" Value="Verdana" />
-			</Style>
-			<ResourceDictionary.MergedDictionaries>
-				<!--Font Resources For Glyphs-->
-				<ResourceDictionary Source="/Telerik.Windows.Controls;component/Themes/FontResources.xaml"/>
-				<!--Themes Resources-->
-				<ResourceDictionary Source="/Telerik.Windows.Themes.Fluent;component/Themes/System.Windows.xaml" />
-				<ResourceDictionary Source="/Telerik.Windows.Themes.Fluent;component/Themes/Telerik.Windows.Controls.xaml" />
-				<ResourceDictionary Source="/Telerik.Windows.Themes.Fluent;component/Themes/Telerik.Windows.Controls.Input.xaml" />
-				<ResourceDictionary Source="/Telerik.Windows.Themes.Fluent;component/Themes/Telerik.Windows.Controls.Navigation.xaml" />
-				<ResourceDictionary Source="/Telerik.Windows.Themes.Fluent;component/Themes/Telerik.Windows.Controls.GridView.xaml" />
-				<ResourceDictionary Source="/Telerik.Windows.Themes.Fluent;component/Themes/Telerik.Windows.Controls.FileDialogs.xaml" />
-				<!--Notify Icon Resource-->
-				<ResourceDictionary Source="Data/NotifyIconResources.xaml" />
-			</ResourceDictionary.MergedDictionaries>
-		</ResourceDictionary>
-	</Application.Resources>
+      <Style x:Key="WindowStyle" TargetType="telerik:RadWindow">
+        <Setter Property="FontFamily" Value="Verdana" />
+      </Style>
+      <ResourceDictionary.MergedDictionaries>
+        <!--Font Resources For Glyphs-->
+        <ResourceDictionary Source="/Telerik.Windows.Controls;component/Themes/FontResources.xaml"/>
+        <!--Themes Resources-->
+        <ResourceDictionary Source="/Telerik.Windows.Themes.Windows11;component/Themes/System.Windows.xaml" />
+        <ResourceDictionary Source="/Telerik.Windows.Themes.Windows11;component/Themes/Telerik.Windows.Controls.xaml" />
+        <ResourceDictionary Source="/Telerik.Windows.Themes.Windows11;component/Themes/Telerik.Windows.Controls.Input.xaml" />
+        <ResourceDictionary Source="/Telerik.Windows.Themes.Windows11;component/Themes/Telerik.Windows.Controls.Navigation.xaml" />
+        <ResourceDictionary Source="/Telerik.Windows.Themes.Windows11;component/Themes/Telerik.Windows.Controls.GridView.xaml" />
+        <ResourceDictionary Source="/Telerik.Windows.Themes.Windows11;component/Themes/Telerik.Windows.Controls.FileDialogs.xaml" />
+        <!--Notify Icon Resource-->
+        <ResourceDictionary Source="Data/NotifyIconResources.xaml" />
+      </ResourceDictionary.MergedDictionaries>
+    </ResourceDictionary>
+  </Application.Resources>
 </Application>

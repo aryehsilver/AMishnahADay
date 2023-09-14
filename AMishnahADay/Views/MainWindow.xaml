@@ -18,7 +18,8 @@
 									 Style="{StaticResource WindowStyle}"
 									 WindowStartupLocation="CenterScreen"
 									 telerikNavigation:RadWindowInteropHelper.ShowInTaskbar="True"
-									 telerik:StyleManager.Theme="Fluent">
+									 xmlns:helpers="clr-namespace:Telerik.Windows.Controls.Theming.Helpers;assembly=Telerik.Windows.Controls" 
+									 helpers:WindowEffectsHelper.BackdropMaterial="Acrylic">
 	<telerik:RadWindow.Icon>
 		<Image Source="../Data/AMADIcon" Width="24" Margin="5" />
 	</telerik:RadWindow.Icon>
@@ -30,10 +31,12 @@
 											 Grid.Column="1"
 											 Background="#00000000"
 											 BorderThickness="0"
-											 Width="36"
-											 Height="36"
+                       CornerRadius="0"
+                       Focusable="False"
+											 Width="52"
+											 Height="37"
 											 ToolTip="Settings"
-											 Margin="0, -47, 108, 0"
+											 Margin="0, -46.5, 135, 0"
 											 HorizontalAlignment="Right"
 											 Click="Settings_Click">
 			<StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
@@ -44,10 +47,12 @@
 											 Grid.Column="1"
 											 Background="#00000000"
 											 BorderThickness="0"
-											 Width="36"
-											 Height="36"
+                       CornerRadius="0"
+                       Focusable="False"
+											 Width="52"
+											 Height="37"
 											 ToolTip="{Binding DarkModeToolTip, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-											 Margin="0, -47, 144, 0"
+											 Margin="0, -46.5, 181, 0"
 											 HorizontalAlignment="Right"
 											 Click="Theme_Click">
 			<StackPanel Orientation="Horizontal"
@@ -58,8 +63,8 @@
 
 		<telerik:RadButton Grid.Row="1"
 											 Grid.Column="0"
-											 Width="80"
-											 Height="28"
+											 Width="110"
+											 Height="38"
 											 Margin="10, 0, 0, 5"
 											 Command="{Binding PreviousCommand, Mode=TwoWay}"
 											 HorizontalAlignment="Left"
@@ -75,7 +80,7 @@
 					Grid.RowSpan="2"
 					HorizontalAlignment="Center"
 					Margin="80, 0, 80, 0"
-					gh:GridHelper.GridCols="200,90,90"
+					gh:GridHelper.GridCols="215,90,90"
 					gh:GridHelper.GridRows="Auto,Auto">
 			<TextBlock Grid.Column="0"
 								 Grid.Row="0"
@@ -87,7 +92,7 @@
 								 Text="מסכת" />
 			<telerik:RadComboBox Grid.Column="0"
 													 Grid.Row="1"
-													 Width="190"
+													 Width="200"
 													 DisplayMemberPath="BothNames"
 													 ItemsSource="{Binding Masechtas, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
 													 SelectedItem="{Binding Masechtah, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
@@ -129,8 +134,8 @@
 
 		<telerik:RadButton Grid.Row="1"
 											 Grid.Column="1"
-											 Width="80"
-											 Height="28"
+											 Width="100"
+											 Height="38"
 											 Margin="0, 0, 10, 5"
 											 Command="{Binding NextCommand, Mode=TwoWay}"
 											 HorizontalAlignment="Right"
@@ -142,29 +147,43 @@
 		</telerik:RadButton>
 
 		<Grid gh:GridHelper.GridCols="*,*"
+          gh:GridHelper.GridRows="auto,*,auto"
 					Grid.Row="2"
 					Grid.ColumnSpan="2"
 					Margin="0, 5, 0, 0">
-			<telerik:RadRichTextBox Name="englishMishnah"
+
+      <Border Grid.Row="0"
+              Grid.ColumnSpan="2"
+              BorderThickness=".5"
+							BorderBrush="#e6e6e6" />
+
+      <telerik:RadRichTextBox Grid.Row="1"
+                              Name="englishMishnah"
 															Grid.Column="0"
 															Padding="5"
 															IsSpellCheckingEnabled="False"
 															IsReadOnly="True"
-															FontSize="24"
-															FontFamily="Global Sans Serif" />
+                              IsContextMenuEnabled="False"
+                              IsSelectionMiniToolBarEnabled="False" />
 			<telerik:HtmlDataProvider RichTextBox="{Binding ElementName=englishMishnah}"
 																Html="{Binding EnglishText}" />
 
-			<telerik:RadRichTextBox Name="hebrewMishnah"
+      <telerik:RadRichTextBox Grid.Row="1"
+                              Name="hebrewMishnah"
 															Grid.Column="1"
 															Padding="5"
 															DocumentChanged="HebrewMishnah_DocumentChanged"
 															IsSpellCheckingEnabled="False"
 															IsReadOnly="True"
-															FontSize="24"
-															FontFamily="Global Sans Serif" />
+                              IsContextMenuEnabled="False"
+                              IsSelectionMiniToolBarEnabled="False" />
 			<telerik:HtmlDataProvider RichTextBox="{Binding ElementName=hebrewMishnah}"
 																Html="{Binding HebrewText}" />
+
+      <Border Grid.Row="2"
+              Grid.ColumnSpan="2"
+              BorderThickness=".5"
+              BorderBrush="#e6e6e6" />
 		</Grid>
 
 		<!--<telerik:RadButton Grid.Row="3"

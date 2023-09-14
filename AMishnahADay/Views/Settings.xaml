@@ -10,13 +10,14 @@
                    mc:Ignorable="d"
                    Header="A Mishnah A Day - Settings"
 									 DataContext="{Binding Source={StaticResource Locator}, Path=SettingsViewModel}"
-									 Height="340"
-									 Width="430"
+									 Height="405"
+									 Width="455"
 									 ResizeMode="CanMinimize"
 									 Style="{StaticResource WindowStyle}"
 									 WindowStartupLocation="CenterScreen"
 									 telerikNavigation:RadWindowInteropHelper.ShowInTaskbar="True"
-									 telerik:StyleManager.Theme="Fluent">
+									 xmlns:helpers="clr-namespace:Telerik.Windows.Controls.Theming.Helpers;assembly=Telerik.Windows.Controls" 
+									 helpers:WindowEffectsHelper.BackdropMaterial="Acrylic">
 	<telerik:RadWindow.Resources>
 		<Style x:Key="OverlayStyle" 
            TargetType="Rectangle">
@@ -53,12 +54,14 @@
 														OverlayStyle="{StaticResource OverlayStyle}">
 		<Grid gh:GridHelper.GridRows="auto,*,auto">
 			<telerik:RadButton Grid.Row="0"
-												 Width="36"
-												 Height="36"
+												 Width="52"
+												 Height="38"
+                         telerik:CornerRadius="0"
 												 Background="#00000000"
 												 BorderThickness="0"
+                         Focusable="False"
 												 ToolTip="{Binding DarkModeToolTip, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-												 Margin="0, -36, 72, 0"
+												 Margin="0, -36, 90, 0"
 												 HorizontalAlignment="Right"
 												 Click="Theme_Click">
 				<StackPanel Orientation="Horizontal"
@@ -82,7 +85,8 @@
 									 Grid.Row="2"
 									 Margin="5, 0, 0, 15"
 									 VerticalAlignment="Center"
-									 Text="The time the reminder will be shown:" />
+                   Foreground="{Binding ForeGround}"
+									 Text="Time the reminder will be shown:" />
 				<telerik:RadTimePicker Grid.Column="1"
 															 Grid.Row="2"
 															 Margin="0, 0, 0, 15"
@@ -98,15 +102,16 @@
 									 Grid.Row="4"
 									 HorizontalAlignment="Center"
 									 Margin="0, 0, 0, 10"
-									 Text="The next mishnah shown will be"/>
+									 Text="Next Mishnah Shown"/>
 
 				<TextBlock Grid.Column="0"
 									 Grid.Row="5"
 									 Margin="5, 0, 0, 15"
+                   Foreground="{Binding ForeGround}"
 									 Text="Mesechtah: "/>
 				<telerik:RadComboBox Grid.Column="1"
 														 Grid.Row="5"
-														 Width="150"
+														 Width="200"
 														 DisplayMemberPath="BothNames"
 														 ItemsSource="{Binding Masechtas, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
 														 SelectedItem="{Binding Masechtah, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
@@ -116,10 +121,11 @@
 				<TextBlock Grid.Column="0"
 									 Grid.Row="6"
 									 Margin="5, 0, 0, 15"
+                   Foreground="{Binding ForeGround}"
 									 Text="Perek: "/>
 				<telerik:RadComboBox Grid.Column="1"
 														 Grid.Row="6"
-														 Width="150"
+														 Width="200"
 													   DisplayMemberPath="PerekNumber"
 													   ItemsSource="{Binding Perakim, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
 													   SelectedValue="{Binding Perek, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
@@ -129,10 +135,11 @@
 				<TextBlock Grid.Column="0"
 									 Grid.Row="7"
 									 Margin="5, 0, 0, 15"
+                   Foreground="{Binding ForeGround}"
 									 Text="Mishnah: "/>
 				<telerik:RadComboBox Grid.Column="1"
 														 Grid.Row="7"
-														 Width="150"
+														 Width="200"
 														 DisplayMemberPath="MishnahNumber"
 														 ItemsSource="{Binding Mishnayos, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
 														 SelectedValue="{Binding Mishnah, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
@@ -148,14 +155,12 @@
 									MinWidth="70"
 									Content="Save"
 									Click="Save_Click"
-									IsDefault="True"
-									telerik:StyleManager.Theme="Fluent" />
+									IsDefault="True" />
 					<Button Padding="3"
 									Margin="10, 0"
 									MinWidth="70"
 									Content="Cancel"
-									Click="Cancel_Click"
-									telerik:StyleManager.Theme="Fluent"/>
+									Click="Cancel_Click" />
 				</telerik:RadWrapPanel>
 			</Grid>
 
