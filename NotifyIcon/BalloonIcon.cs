@@ -1,27 +1,26 @@
-﻿
-namespace NotifyIcon {
-  ///<summary>
-  /// Supported icons for the tray's balloon messages.
-  ///</summary>
-  public enum BalloonIcon {
-    /// <summary>
-    /// The balloon message is displayed without an icon.
-    /// </summary>
-    None,
+﻿namespace NotifyIcon;
 
-    /// <summary>
-    /// An information is displayed.
-    /// </summary>
-    Info,
+///<summary>
+/// Supported icons for the tray's balloon messages.
+///</summary>
+public enum BalloonIcon {
+  /// <summary>
+  /// The balloon message is displayed without an icon.
+  /// </summary>
+  None,
 
-    /// <summary>
-    /// A warning is displayed.
-    /// </summary>
-    Warning,
+  /// <summary>
+  /// An information is displayed.
+  /// </summary>
+  Info,
 
-    /// <summary>
-    /// An error is displayed.
-    /// </summary>
-    Error
-  }
+  /// <summary>
+  /// A warning is displayed.
+  /// </summary>
+  Warning,
+
+  /// <summary>
+  /// An error is displayed.
+  /// </summary>
+  Error
 }
