@@ -212,7 +212,7 @@ namespace AMishnahADay.ViewModels;
     public async Task SetTheme() {
       DarkMode = !DarkMode;
       DarkModeToolTip = DarkMode ? "Switch to light mode" : "Switch to dark mode";
-      FluentPalette.LoadPreset(DarkMode ? FluentPalette.ColorVariation.Dark : FluentPalette.ColorVariation.Light);
+    Windows11Palette.LoadPreset(DarkMode ? Windows11Palette.ColorVariation.Dark : Windows11Palette.ColorVariation.Light);
     _context.Settings.SingleOrDefault().DarkMode = DarkMode;
     await _context.SaveChangesAsync();
     }

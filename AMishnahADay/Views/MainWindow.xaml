@@ -186,11 +186,13 @@
               BorderBrush="#e6e6e6" />
 		</Grid>
 
-		<!--<telerik:RadButton Grid.Row="3"
-											 Grid.Column="1"
-											 Width="50"
-											 Margin="0, 5, 0, 0"
-											 HorizontalAlignment="Right"
-											 Content="Close" />-->
+    <TextBlock Grid.Row="3"
+							 Grid.ColumnSpan="2"
+               FontSize="12"
+							 Margin="5, 4, 0, -15">
+			<Run>Text for the mishnayos comes from the </Run>
+			<Hyperlink NavigateUri="https://www.sefaria.org"
+								 Click="Hyperlink_Click">Sefaria website</Hyperlink>
+    </TextBlock>
 	</Grid>
 </telerik:RadWindow>

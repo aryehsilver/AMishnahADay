@@ -60,5 +60,7 @@
     hebrewMishnah.ChangeFontFamily(new Media.FontFamily("Narkisim"));
       hebrewMishnah.Document.Selection.Clear();
     }
+  private void Hyperlink_Click(object sender, RoutedEventArgs e) =>
+    Process.Start(new ProcessStartInfo("https://www.sefaria.org") { UseShellExecute = true });
   }
 }

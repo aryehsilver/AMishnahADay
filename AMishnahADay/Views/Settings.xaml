@@ -165,8 +165,12 @@
 			</Grid>
 
 			<TextBlock Grid.Row="2"
-								 Margin="5, -20, 5, 5"
-								 Text="© 2021 Version 1.0" />
+								 Margin="5, -20, 5, 5">
+				<Run>A project of </Run>
+				<Hyperlink NavigateUri="https://alldev.co.uk"
+									 Click="Hyperlink_Click">All Dev</Hyperlink>
+				<Run> © 2022 Version 2.0</Run>
+      </TextBlock>
 		</Grid>
 	</telerik:RadBusyIndicator>
 </telerik:RadWindow>
