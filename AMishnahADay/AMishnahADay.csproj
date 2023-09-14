@@ -1,58 +1,58 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-	<PropertyGroup>
-		<OutputType>WinExe</OutputType>
-		<TargetFramework>net5.0-windows10.0.17763.0</TargetFramework>
-		<UseWPF>true</UseWPF>
-		<UseWindowsForms>true</UseWindowsForms>
-		<AssemblyName>A Mishnah A Day</AssemblyName>
-		<ApplicationIcon>Data\AMADIcon</ApplicationIcon>
-		<Version>1.0.1</Version>
-	</PropertyGroup>
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows10.0.17763.0</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <UseWindowsForms>true</UseWindowsForms>
+    <AssemblyName>A Mishnah A Day</AssemblyName>
+    <ApplicationIcon>Data\AMADIcon</ApplicationIcon>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Version>2.0.0</Version>
+  </PropertyGroup>
 
-	<ItemGroup>
-	  <None Remove="Data\AMADIcon" />
-	  <None Remove="Data\AMishnahADay.png" />
-	</ItemGroup>
+  <ItemGroup>
+    <None Remove="Data\AMADIcon" />
+    <None Remove="Data\AMishnahADay.png" />
+  </ItemGroup>
 
-	<ItemGroup>
-	  <Content Include="Data\AMishnahADay.png">
-	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-	  </Content>
-	  <Resource Include="Data\AMADIcon">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </Resource>
-	</ItemGroup>
+  <ItemGroup>
+    <Content Include="Data\AMishnahADay.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="Data\AMADIcon">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
 
-	<ItemGroup>
-		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.5" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.5" />
-		<PackageReference Include="Microsoft.Toolkit.Uwp.Notifications" Version="7.0.1" />
-		<PackageReference Include="Telerik.UI.for.Wpf.NetCore.Xaml" Version="2021.2.511" />
-		<PackageReference Include="MvvmLightLibsStd10" Version="5.4.1.1" />
-		<PackageReference Include="Ninject" Version="3.3.4" />
-	</ItemGroup>
-	
-	<ItemGroup>
-		<COMReference Include="IWshRuntimeLibrary.dll">
-			<WrapperTool>tlbimp</WrapperTool>
-			<VersionMinor>0</VersionMinor>
-			<VersionMajor>1</VersionMajor>
-			<Guid>f935dc20-1cf0-11d0-adb9-00c04fd58a0b</Guid>
-			<Lcid>0</Lcid>
-			<Isolated>false</Isolated>
-		</COMReference>
-	</ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.6">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.6" />
+    <PackageReference Include="Microsoft.Toolkit.Uwp.Notifications" Version="7.1.2" />
+    <PackageReference Include="MvvmLightLibsStd10" Version="5.4.1.1" />
+    <PackageReference Include="Ninject" Version="3.3.6" />
+    <PackageReference Include="Telerik.UI.for.Wpf.NetCore.Xaml" Version="2022.2.511" />
+    <PackageReference Include="Telerik.Windows.Themes.Windows11.for.Wpf" Version="2022.2.511" />
+    <PackageReference Include="Pixata.Extensions" Version="1.25.0" />
+  </ItemGroup>
 
-	<ItemGroup>
-		<ProjectReference Include="..\NotifyIcon\NotifyIcon.csproj" />
-	  <ProjectReference Include="..\AMishnahADay.Models\AMishnahADay.Models.csproj" />
-	</ItemGroup>
+  <ItemGroup>
+    <COMReference Include="IWshRuntimeLibrary.dll">
+      <WrapperTool>tlbimp</WrapperTool>
+      <VersionMinor>0</VersionMinor>
+      <VersionMajor>1</VersionMajor>
+      <Guid>f935dc20-1cf0-11d0-adb9-00c04fd58a0b</Guid>
+      <Lcid>0</Lcid>
+      <Isolated>false</Isolated>
+    </COMReference>
+  </ItemGroup>
 
-	<ItemGroup>
-	  <Reference Include="Telerik.Windows.Themes.Fluent">
-	    <HintPath>..\..\..\..\..\..\Program Files (x86)\Progress\Telerik UI for WPF R2 2021\Binaries.NoXaml\NetCore\Telerik.Windows.Themes.Fluent.dll</HintPath>
-	  </Reference>
-	</ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NotifyIcon\NotifyIcon.csproj" />
+    <ProjectReference Include="..\AMishnahADay.Models\AMishnahADay.Models.csproj" />
+  </ItemGroup>
 
 </Project>

@@ -1,0 +1,18 @@
+﻿//global using AMishnahADay.Models.Models;
+global using AMishnahADay.ViewModels;
+//global using AMishnahADay.Views;
+global using Microsoft.EntityFrameworkCore;
+global using Microsoft.Toolkit.Uwp.Notifications;
+global using System;
+global using System.Collections.Generic;
+global using System.Diagnostics;
+global using System.IO;
+global using System.Linq;
+global using System.Windows;
+global using System.Windows.Input;
+global using System.Windows.Media;
+global using Telerik.Windows.Controls;
+global using Telerik.Windows.Documents.Model;
+global using ViewModelBase = GalaSoft.MvvmLight.ViewModelBase;
+global using Input = System.Windows.Input;
+global using Media = System.Windows.Media;

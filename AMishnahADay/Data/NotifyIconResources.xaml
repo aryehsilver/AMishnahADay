@@ -4,33 +4,33 @@
 										xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
 										xmlns:vm="clr-namespace:AMishnahADay.ViewModels"
                     xmlns:tb="clr-namespace:NotifyIcon;assembly=NotifyIcon">
-	<!-- The "shared" directive is needed if we reopen the sample window a few times - WPF will otherwise
+  <!-- The "shared" directive is needed if we reopen the sample window a few times - WPF will otherwise
         reuse the same context menu (which is a resource) again (which will have its DataContext set to the old TaskbarIcon) -->
-	<ContextMenu x:Shared="false" x:Key="SysTrayMenu">
-		<MenuItem Header="Learn a mishnah" Command="{Binding OpenMainWindowCommand}">
-		<MenuItem.Icon>
-			<Image Source="{telerik:RadGlyph Glyph={StaticResource GlyphJs}}" />
-		</MenuItem.Icon>
-		</MenuItem>
-		<MenuItem Header="Settings" Command="{Binding ShowSettingsWindowCommand}">
-			<MenuItem.Icon>
-				<Image Source="{telerik:RadGlyph Glyph={StaticResource GlyphGear}}" />
-			</MenuItem.Icon>
-		</MenuItem>
-		<Separator />
-		<MenuItem Header="Exit" Command="{Binding ExitApplicationCommand}" />
-	</ContextMenu>
+  <ContextMenu x:Shared="false" x:Key="SysTrayMenu">
+    <MenuItem Header="Learn a mishnah" Command="{Binding OpenMainWindowCommand}">
+      <MenuItem.Icon>
+        <Image Source="{telerik:RadGlyph Glyph={StaticResource GlyphJs}}" />
+      </MenuItem.Icon>
+    </MenuItem>
+    <MenuItem Header="Settings" Command="{Binding ShowSettingsWindowCommand}">
+      <MenuItem.Icon>
+        <Image Source="{telerik:RadGlyph Glyph={StaticResource GlyphGear}}" />
+      </MenuItem.Icon>
+    </MenuItem>
+    <Separator />
+    <MenuItem Header="Exit" Command="{Binding ExitApplicationCommand}" />
+  </ContextMenu>
 
-	<!-- The application's NotifyIcon - started from App.xaml.cs -->
-	<tb:TaskbarIcon x:Key="NotifyIcon"
+  <!-- The application's NotifyIcon - started from App.xaml.cs -->
+  <tb:TaskbarIcon x:Key="NotifyIcon"
                   IconSource="/Data/AMADIcon"
                   ToolTipText="A Mishnah A Day"
 									LeftClickCommand="{Binding OpenMainWindowCommand}"
                   ContextMenu="{StaticResource SysTrayMenu}">
 
-		<!-- Self-assign a data context (could also be done programmatically) -->
-		<tb:TaskbarIcon.DataContext>
-			<vm:NotifyIconViewModel />
-		</tb:TaskbarIcon.DataContext>
-	</tb:TaskbarIcon>
+    <!-- Self-assign a data context (could also be done programmatically) -->
+    <tb:TaskbarIcon.DataContext>
+      <vm:NotifyIconViewModel />
+    </tb:TaskbarIcon.DataContext>
+  </tb:TaskbarIcon>
 </ResourceDictionary>
