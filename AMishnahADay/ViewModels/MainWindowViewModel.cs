@@ -1,15 +1,9 @@
 ﻿using AMishnahADay.Models.Models;
-using GalaSoft.MvvmLight.Command;
-using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Telerik.Windows.Controls;
-using ViewModelBase = GalaSoft.MvvmLight.ViewModelBase;
 
-namespace AMishnahADay.ViewModels {
+namespace AMishnahADay.ViewModels;
+
   public class MainWindowViewModel : ViewModelBase {
-    private AppDbContext context;
+  private AppDbContext _context;
     public MainWindowViewModel() {
       _ = LoadData();
       LoadCommands();
@@ -21,18 +15,18 @@ namespace AMishnahADay.ViewModels {
     }
 
     public async Task LoadData() {
-      context = new();
-      DarkMode = context.Settings.SingleOrDefault().DarkMode;
-      DarkModeToolTip = context.Settings.SingleOrDefault().DarkMode ? "Switch to light mode" : "Switch to dark mode";
-      Mishnah = context.Settings
+    _context = new();
+    DarkMode = _context.Settings.SingleOrDefault().DarkMode;
+    DarkModeToolTip = _context.Settings.SingleOrDefault().DarkMode ? "Switch to light mode" : "Switch to dark mode";
+    Mishnah = _context.Settings
         .Include(s => s.Mishnah)
           .ThenInclude(m => m.Perek)
         .Include(s => s.Mishnah)
           .ThenInclude(m => m.Masechtah)
         .SingleOrDefault().Mishnah;
-      Masechtas = await context.Masechtahs.ToListAsync();
-      Perakim = await context.Perakim.Where(p => p.Masechtah == Mishnah.Masechtah).ToListAsync();
-      Mishnayos = await context.Mishnayos.Where(m => m.Perek == Mishnah.Perek).ToListAsync();
+    Masechtas = await _context.Masechtahs.ToListAsync();
+    Perakim = await _context.Perakim.Where(p => p.Masechtah == Mishnah.Masechtah).ToListAsync();
+    Mishnayos = await _context.Mishnayos.Where(m => m.Perek == Mishnah.Perek).ToListAsync();
       Masechtah = Mishnah.Masechtah;
       Perek = Mishnah.Perek;
       EnglishText = Mishnah.EnglishText;
@@ -41,24 +35,24 @@ namespace AMishnahADay.ViewModels {
 
     private async Task SetMishnah(Masechtah masechtah = null, Perek perek = null, Mishnah mishnah = null) {
       if (masechtah != null) {
-        Perakim = await context.Perakim.Where(p => p.Masechtah == masechtah).ToListAsync();
+      Perakim = await _context.Perakim.Where(p => p.Masechtah == masechtah).ToListAsync();
         Perek = masechtah.Perekim.FirstOrDefault();
-        Mishnayos = await context.Mishnayos.Where(m => m.Perek == Perek).ToListAsync();
+      Mishnayos = await _context.Mishnayos.Where(m => m.Perek == Perek).ToListAsync();
         Mishnah = masechtah.Perekim.FirstOrDefault().Mishnayos.FirstOrDefault();
         EnglishText = Mishnah.EnglishText;
         HebrewText = Mishnah.HebrewText;
       }
       if (perek != null) {
-        Mishnayos = await context.Mishnayos.Where(m => m.Perek == Perek).ToListAsync();
+      Mishnayos = await _context.Mishnayos.Where(m => m.Perek == Perek).ToListAsync();
         Mishnah = perek.Mishnayos.FirstOrDefault();
         EnglishText = Mishnah.EnglishText;
         HebrewText = Mishnah.HebrewText;
       }
       if (mishnah != null) {
-        Masechtah = await context.Masechtahs.FirstOrDefaultAsync(m => m == mishnah.Masechtah);
-        Perakim = await context.Perakim.Where(p => p.Masechtah == Masechtah).ToListAsync();
+      Masechtah = await _context.Masechtahs.FirstOrDefaultAsync(m => m == mishnah.Masechtah);
+      Perakim = await _context.Perakim.Where(p => p.Masechtah == Masechtah).ToListAsync();
         Perek = mishnah.Perek;
-        Mishnayos = await context.Mishnayos.Where(m => m.Perek == Perek).ToListAsync();
+      Mishnayos = await _context.Mishnayos.Where(m => m.Perek == Perek).ToListAsync();
         EnglishText = Mishnah.EnglishText;
         HebrewText = Mishnah.HebrewText;
       }
@@ -181,16 +175,16 @@ namespace AMishnahADay.ViewModels {
 
     private void NextOrPreviousMishnah(int number) =>
       Mishnah = Mishnah.ID == 1 && number == -1
-          ? context.Mishnayos
+        ? _context.Mishnayos
                 .Include(m => m.Masechtah)
                 .Include(m => m.Perek)
                 .SingleOrDefault(m => m.ID == 4192)
           : Mishnah.ID == 4192 && number == 1
-            ? context.Mishnayos
+          ? _context.Mishnayos
                   .Include(m => m.Masechtah)
                   .Include(m => m.Perek)
                   .SingleOrDefault(m => m.ID == 1)
-            : context.Mishnayos
+          : _context.Mishnayos
                   .Include(m => m.Masechtah)
                   .Include(m => m.Perek)
                   .SingleOrDefault(m => m.ID == Mishnah.ID + number);
@@ -206,10 +200,10 @@ namespace AMishnahADay.ViewModels {
     #region Save
     public async Task Save() =>
       await Task.Run(() => {
-        Settings settings = context.Settings.SingleOrDefault();
+      Settings settings = _context.Settings.SingleOrDefault();
         settings.MishnahID = Mishnah.ID;
-        context.Update(settings);
-        context.SaveChanges();
+      _context.Update(settings);
+      _context.SaveChanges();
       });
     #endregion
 
@@ -219,8 +213,8 @@ namespace AMishnahADay.ViewModels {
       DarkMode = !DarkMode;
       DarkModeToolTip = DarkMode ? "Switch to light mode" : "Switch to dark mode";
       FluentPalette.LoadPreset(DarkMode ? FluentPalette.ColorVariation.Dark : FluentPalette.ColorVariation.Light);
-      context.Settings.SingleOrDefault().DarkMode = DarkMode;
-      await context.SaveChangesAsync();
+    _context.Settings.SingleOrDefault().DarkMode = DarkMode;
+    await _context.SaveChangesAsync();
     }
 
     #endregion
@@ -251,4 +245,3 @@ namespace AMishnahADay.ViewModels {
     }
     #endregion
   }
-}
