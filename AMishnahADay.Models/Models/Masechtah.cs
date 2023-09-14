@@ -4,7 +4,6 @@ public class Masechtah {
   public int ID { get; set; }
   public string EnglishName { get; set; }
   public string HebrewName { get; set; }
-  [NotMapped]
   public string BothNames => EnglishName + " - " + HebrewName;
   public List<Perek> Perekim { get; set; }
   public Masechtas Masechet { get; set; }
